@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Charts"
+            android:label="@string/title_activity_charts"
+            android:theme="@android:style/Theme.Holo"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.braida.moura.mobilebi.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

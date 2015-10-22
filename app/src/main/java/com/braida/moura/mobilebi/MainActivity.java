@@ -1,17 +1,35 @@
 package com.braida.moura.mobilebi;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
+    AutoCompleteTextView textCube;
+    Button btnCharts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textCube = (AutoCompleteTextView) findViewById(R.id.textCube);
+        btnCharts = (Button)findViewById(R.id.charts);
+        String[] Cubos = getResources().getStringArray(R.array.cubos);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cubos);
+        textCube.setAdapter(adapter);
+        btnCharts.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View vw) {
+                Intent myIntent = new Intent(MainActivity.this, Charts.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
     }
 
     @Override
