@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
-
+import android.view.View;
 
 
 public class Charts extends FragmentActivity implements ActionBar.TabListener {
@@ -31,20 +31,16 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
 
         viewPager.setAdapter(mAdapter);
         actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        // Adding Tabs
-        for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name)
-                    .setTabListener(this));
-        }
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 // on changing the page
                 // make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
+                //actionBar.setSelectedNavigationItem(position);
             }
 
             @Override

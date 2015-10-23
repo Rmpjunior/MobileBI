@@ -14,6 +14,7 @@ import android.widget.Button;
 public class MainActivity extends ActionBarActivity {
     AutoCompleteTextView textCube;
     Button btnCharts;
+    Button btnGo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,17 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         textCube = (AutoCompleteTextView) findViewById(R.id.textCube);
         btnCharts = (Button)findViewById(R.id.charts);
+        btnGo = (Button)findViewById(R.id.go);
         String[] Cubos = getResources().getStringArray(R.array.cubos);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cubos);
         textCube.setAdapter(adapter);
+        btnCharts.setVisibility(View.INVISIBLE);
+        btnGo.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View vw){
+                btnCharts.setVisibility(View.VISIBLE);
+            }
+                                 }
+        );
         btnCharts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View vw) {
                 Intent myIntent = new Intent(MainActivity.this, Charts.class);
