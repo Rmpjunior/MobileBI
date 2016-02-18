@@ -1,5 +1,7 @@
 package com.braida.moura.mobilebi;
 
+import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v7.app.ActionBarActivity;
@@ -13,9 +15,23 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     Button btnGo;
     ListView dimensions;
     ArrayList <String> checkedValue;
+    ListView values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,31 +50,32 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         textCube = (AutoCompleteTextView) findViewById(R.id.textCube);
         btnCharts = (Button)findViewById(R.id.charts);
-        btnGo = (Button)findViewById(R.id.go);
         String[] Cubos = getResources().getStringArray(R.array.cubos);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cubos);
         textCube.setAdapter(adapter);
         dimensions = (ListView) findViewById(R.id.dimensions);
-        final ArrayList<String> dimensions_items= new ArrayList<String>();
-        dimensions_items.add("Primeira dimensão");
-        dimensions_items.add("Segunda dimensão");
-        dimensions_items.add("Terceira dimensão");
+        values = (ListView) findViewById(R.id.values);
+        ArrayList<String> dimensions_items= new ArrayList<String>();
+        ArrayList<String> values_items = new ArrayList<String>();
+        values_items.add("Budget");
+        dimensions_items.add("Year");
+        dimensions_items.add("Area");
+        dimensions_items.add("Company size");
         Listadapter Adapter = new Listadapter(this,dimensions_items);
+        Listadapter Adapter2 = new Listadapter(this, values_items);
+        values.setAdapter(Adapter2);
         dimensions.setAdapter(Adapter);
         dimensions.setOnItemClickListener(this);
-        btnGo.setOnClickListener(new View.OnClickListener() {
-                                     public void onClick(View vw) {
-
-                                     }
-                                 }
-        );
         btnCharts.setOnClickListener(new View.OnClickListener() {
             public void onClick(View vw) {
                 Intent myIntent = new Intent(MainActivity.this, Charts.class);
+
                 MainActivity.this.startActivity(myIntent);
             }
         });
     }
+
+
 
     @Override
     public void onItemClick(AdapterView arg0, View v, int position, long arg3) {

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.braida.moura.mobilebi" >
 
+<uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,5 +29,6 @@
                 android:value="com.braida.moura.mobilebi.MainActivity" />
         </activity>
     </application>
+
 
 </manifest>

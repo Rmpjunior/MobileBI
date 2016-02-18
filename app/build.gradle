@@ -23,10 +23,12 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile files('libs/hellocharts-library-1.5.8.jar')
+    compile 'com.loopj.android:android-async-http:1.4.4'
 }
 
 repositories {
     maven {
         url "https://jitpack.io"
     }
+    jcenter()
 }

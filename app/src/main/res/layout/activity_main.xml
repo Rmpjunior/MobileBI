@@ -9,7 +9,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -25,33 +25,26 @@
             android:layout_height="wrap_content"
             android:text="Charts/"
             android:id="@+id/charts"
-            android:layout_gravity="bottom"
             android:layout_weight="5" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="406dp">
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="203dp"
             android:id="@+id/dimensions" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/values" />
+            android:id="@+id/values"
+            android:layout_marginTop="5dp" />
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Go!"
-        android:id="@+id/go" />
 
 
 </LinearLayout>
