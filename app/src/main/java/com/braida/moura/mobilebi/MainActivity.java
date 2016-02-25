@@ -50,29 +50,27 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     ArrayList<String> dimensions_items_checked = new ArrayList<String>();
     ArrayList<String> values_items_checked = new ArrayList<String>();
 
-    public String loadJSON(int i, String name) {
+    public String loadJSON(int i, int j ,String[] names) {
         JSONArray jsonarray = null;
-        String result;
         try {
             JSONReader jsonreader = new JSONReader(getApplicationContext());
-            jsonarray = new JSONArray(jsonreader.loadJSONFromAsset());
-            result = jsonarray.optJSONObject(i).getString(name);
+            jsonarray = new JSONArray(jsonreader.loadJSONFromAsset("metadados.json"));
+            return jsonarray.optJSONObject(i).getString(names[j]);
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
-        return result;
     }
 
     public int nrObj() throws JSONException {
             JSONReader jsonreader = new JSONReader(getApplicationContext());
-            JSONArray jsonarray = new JSONArray(jsonreader.loadJSONFromAsset());
+            JSONArray jsonarray = new JSONArray(jsonreader.loadJSONFromAsset("metadados.json"));
             return jsonarray.length();
     }
 
     public int nrKeys() throws JSONException {
             JSONReader jsonreader = new JSONReader(getApplicationContext());
-            JSONArray jsonarray = new JSONArray(jsonreader.loadJSONFromAsset());
+            JSONArray jsonarray = new JSONArray(jsonreader.loadJSONFromAsset("metadados.json"));
             return jsonarray.optJSONObject(0).length();
     }
 
@@ -88,22 +86,16 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         textCube.setAdapter(adapter); //define o adaptador
         dimensions = (ListView) findViewById(R.id.dimensions); //define a listview de dimensões
         values = (ListView) findViewById(R.id.values); //define a listview de valores
-        try {
-            JSONReader jsonreader = new JSONReader(getApplicationContext());
-            JSONArray jsonarray = new JSONArray(jsonreader.loadJSONFromAsset());
-            for (int i = 0; i < 5; i++) {
-                String qualification = new String();
-                qualification = loadJSON(i, "qualification");
-                String name = loadJSON(i, "name");
-                if (qualification.equals("dimensao")) {
+        String []names =    {"name","qualification"};
+        for (int i = 0; i < 4; i++) {
+                String qualification = loadJSON(i, 1, names);
+                String name = loadJSON(i, 0, names);
+                if (qualification.equals("dimensão")) {
                     dimensions_items.add(name);
                 } else {
                     values_items.add(name);
                 }
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         final Listadapter Adapter = new Listadapter(this,dimensions_items); //cria adaptador para a listview de dimensões
         final Listadapter Adapter2 = new Listadapter(this, values_items); //cria adaptador para a listview de valores
