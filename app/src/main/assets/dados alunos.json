@@ -1,0 +1,458 @@
+﻿[
+  {
+    "ANO":"Ano",
+    "REGIAO":"Região",
+    "Porte da Empresa":"Porte Empresa",
+    "Valor Liberado":" Valor Liberado"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"14095"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"1102"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"607"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"2681"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"1613"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"13696"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"1882"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"736"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"3081"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"1653"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"10572"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"538"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"417"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"1138"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"676"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"48773"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"6313"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"3783"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"8789"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"4782"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"10575"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"3891"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"2617"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"8200"
+  },
+  {
+    "ANO":"2012",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"3783"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"11678"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"1636"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"1447"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"3522"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"2616"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"17583"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"1874"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"1049"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"3188"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"1963"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"10596"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"802"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"305"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"1294"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"755"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"58858"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"7294"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"4673"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"10136"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"6082"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"17585"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"4548"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"3102"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"12546"
+  },
+  {
+    "ANO":"2013",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"5287"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"12808"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"1524"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"1404"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"3297"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"CENTRO OESTE        ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"2597"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"16238"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"1859"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"950"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"3355"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORDESTE            ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"1978"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"10610"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"688"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"364"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"1446"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"NORTE               ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"922"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"62657"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"6708"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"5279"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"9031"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUDESTE             ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"5773"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"GRANDE",
+    "Valor Liberado":"15329"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MÉDIA",
+    "Valor Liberado":"3977"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MEDIA-GRANDE",
+    "Valor Liberado":"2824"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"MICRO",
+    "Valor Liberado":"11567"
+  },
+  {
+    "ANO":"2014",
+    "REGIAO":"SUL                 ",
+    "Porte da Empresa":"PEQUENA",
+    "Valor Liberado":"4654"
+  }
+]

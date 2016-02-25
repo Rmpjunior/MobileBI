@@ -1,5 +1,7 @@
 package com.braida.moura.mobilebi;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,22 +15,22 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.View;
 
+import java.util.ArrayList;
+
 
 public class Charts extends FragmentActivity implements ActionBar.TabListener {
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    private String[] tabs = { "Bar", "Color Bar", "Pie", "Bubble", "Table" };
+     String[] tabs = {"Bar", "Color Bar", "Bubble"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_charts);
-
         // Initilization
+        setContentView(R.layout.activity_charts);
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
-        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(mAdapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
