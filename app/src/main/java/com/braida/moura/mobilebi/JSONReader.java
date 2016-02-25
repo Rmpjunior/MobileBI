@@ -12,11 +12,11 @@ public class JSONReader {
     public JSONReader(Context context) {
         mContetx=context;
     }
-    public String loadJSONFromAsset() {
+    public String loadJSONFromAsset(String file) {
         String json = null;
         try {
             AssetManager as = mContetx.getAssets();
-            InputStream is = as.open("metadados.json");
+            InputStream is = as.open(file);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
