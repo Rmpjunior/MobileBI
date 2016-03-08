@@ -23,28 +23,52 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Charts/"
-            android:id="@+id/charts"
-            android:layout_weight="5" />
+            android:text="Go!"
+            android:id="@+id/go" />
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="406dp">
+        android:layout_height="wrap_content">
 
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="203dp"
-            android:id="@+id/dimensions" />
-
-        <ListView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Dimensions:"
+            android:id="@+id/textView" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:id="@+id/dimensions" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Values:"
+            android:id="@+id/textView2" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
             android:id="@+id/values"
             android:layout_marginTop="5dp" />
+
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Charts"
+        android:id="@+id/charts"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:visibility="visible" />
 
 
 </LinearLayout>

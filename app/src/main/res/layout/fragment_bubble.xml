@@ -9,4 +9,11 @@
     tools:context="lecho.lib.hellocharts.samples.BubbleChartActivity$PlaceholderFragment"
     android:id="@+id/container">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subtitle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false" />
 </RelativeLayout>
