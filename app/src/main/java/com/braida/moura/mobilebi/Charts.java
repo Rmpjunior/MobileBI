@@ -32,10 +32,15 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(mAdapter);
+        viewPager.setOffscreenPageLimit(2);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        Bundle bundle = new Bundle();
+        bundle = getIntent().getExtras();
+        Intent intent = new Intent(this, TabsPagerAdapter.class);
+        intent.putExtras(bundle);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -53,6 +58,7 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+        viewPager.setCurrentItem(1);
     }
 
     @Override
