@@ -1,0 +1,42 @@
+[
+  {
+    "origem":"Estatistico Operacoes - Usuario",
+    "name":"Ano",
+    "tipo":"data",
+    "qualification":"dimensão",
+    "range":"discreto",
+    "hierarquia":"",
+    "nível hierarquia":"",
+    "quantidade de valores":"3"
+  },
+  {
+    "origem":"Estatistico Operacoes - Usuarioe",
+    "name":"Regiao",
+    "tipo":"texto",
+    "qualification":"dimensão",
+    "range":"discreto",
+    "hierarquia":"",
+    "nível hierarquia":"",
+    "quantidade de valores":"5"
+  },
+  {
+    "origem":"Estatistico Operacoes - Usuarioe",
+    "name":"Porte da Empresa",
+    "tipo":"texto",
+    "qualification":"dimensão",
+    "range":"discreto",
+    "hierarquia":"",
+    "nível hierarquia":"",
+    "quantidade de valores":"5"
+  },
+  {
+    "origem":"Estatistico Operacoes - Usuarioe",
+    "name":"Valor Liberado",
+    "tipo":"númerico",
+    "qualification":"valor",
+    "range":"contínuo",
+    "hierarquia":"",
+    "nível hierarquia":"",
+    "quantidade de valores":"0"
+  }
+  ]

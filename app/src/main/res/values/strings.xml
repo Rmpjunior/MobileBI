@@ -6,6 +6,7 @@
     <string-array name="cubos">
         <item>eFashion</item>
         <item>FastFood</item>
+        <item>Alunos</item>
     </string-array>
     <string name="title_activity_charts">Charts</string>
 
