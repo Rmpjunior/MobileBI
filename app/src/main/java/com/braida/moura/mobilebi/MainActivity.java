@@ -1,11 +1,12 @@
 package com.braida.moura.mobilebi;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -18,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+
 
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener{
@@ -35,8 +37,12 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     ArrayList<String> values_data = new ArrayList<String>();
     Listadapter Adapter = new Listadapter(this, dimensions_items);
     Listadapter Adapter2 = new Listadapter(this,values_items);
+    String meta;
+    String data;
 
-    public String loadJSON(int i, String name, String file) {
+
+
+   public String loadJSON(int i, String name, String file) {
         JSONArray jsonarray = null;
         try {
             JSONReader jsonreader = new JSONReader(getApplicationContext());
@@ -47,6 +53,18 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             return null;
         }
     }
+/*
+    public String loadJSON(int i, String name, String url) {
+        JSONArray jsonarray = null;
+        try {
+            JSONReader jsonreader = new JSONReader(getApplicationContext());
+            jsonarray = new JSONArray(jsonreader.loadJSONFromUrl(url).toString());
+            return jsonarray.optJSONObject(i).getString(name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }*/
 
 
     public int nrObj(String file){
@@ -60,6 +78,17 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         return jsonarray.length();
     }
 
+/*
+    public int nrObj(String url){
+        JSONReader jsonreader = new JSONReader(getApplicationContext());
+        JSONArray jsonarray=null;
+        try {
+           jsonarray = new JSONArray(jsonreader.loadJSONFromUrl(url));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonarray.length();
+    }*/
 
 
     @Override
@@ -67,27 +96,35 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textCube = (AutoCompleteTextView) findViewById(R.id.textCube); //define a caixa de texto que seleciona o cubo
-        btnCharts = (Button)findViewById(R.id.charts); //define o botão que abre a janela de gráficos
+        btnCharts = (Button)findViewById(R.id.charts); //define o botï¿½o que abre a janela de grï¿½ficos
         btnGo = (Button) findViewById(R.id.go);
         String[] Cubos = getResources().getStringArray(R.array.cubos); //define a array de strings com os cubos existentes na resource de strings
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cubos); //cria o adaptador para o autocomplete
         textCube.setAdapter(adapter); //define o adaptador
-        dimensions = (ListView) findViewById(R.id.dimensions); //define a listview de dimensões
+        dimensions = (ListView) findViewById(R.id.dimensions); //define a listview de dimensï¿½es
         values = (ListView) findViewById(R.id.values); //define a listview de valores
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String[] names = {"name", "qualification"};
+                dimensions_data.clear();
+                dimensions_items.clear();
+                dimensions_items_checked.clear();
+                values_data.clear();
+                values_items.clear();
+                values_items_checked.clear();
+                dimensions.setAdapter(null);
+                values.setAdapter(null);
+                InputMethodManager imm = (InputMethodManager)getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(textCube.getWindowToken(), 0);
                 for (int i = 0; i < nrObj(textCube.getText()+"_meta.json"); i++) {
                     String qualification = loadJSON(i, "qualification", textCube.getText() + "_meta.json");
                     String name = loadJSON(i, "name", textCube.getText() + "_meta.json");
-                    if (qualification.equals("dimensão")) {
+                    if (qualification.equals("dimension")) {
                         dimensions_items.add(name);
                     } else {
                         values_items.add(name);
                     }
-                    Adapter = new Listadapter(MainActivity.this, dimensions_items); //cria adaptador para a listview de dimensões
+                    Adapter = new Listadapter(MainActivity.this, dimensions_items); //cria adaptador para a listview de dimensï¿½es
                     Adapter2 = new Listadapter(MainActivity.this, values_items); //cria adaptador para a listview de valores
                     values.setAdapter(Adapter2); //define o adaptador
                     dimensions.setAdapter(Adapter); //define o adaptador
@@ -116,7 +153,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                         dimensions_data.add(loadJSON(i, s, textCube.getText() + "_data.json"));
                     }
                 }
-                for (int i = 0; i < nrObj("Alunos_data.json"); i++) {
+                for (int i = 0; i < nrObj(textCube.getText()+"_data.json"); i++) {
                     for (int j = 0; j < values_items_checked.size(); j++) {
                         values_data.add(loadJSON(i, values_items_checked.get(j), textCube.getText() + "_data.json"));
                     }

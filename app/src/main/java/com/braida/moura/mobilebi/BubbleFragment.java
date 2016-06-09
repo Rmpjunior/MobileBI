@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -36,8 +37,15 @@ public class BubbleFragment extends Fragment {
         ArrayList<String> dimensions_data = bundle.getStringArrayList("dimensions_data");
         ArrayList<String> values_data = bundle.getStringArrayList("values_data");
         List<BubbleValue> values = new ArrayList<BubbleValue>();
-        ListView list;
-        list = (ListView) getActivity().findViewById(R.id.subtitle);
+        ArrayList<Float> values1 = new ArrayList<Float>();
+        ArrayList<Float> values2 = new ArrayList<Float>();
+        ArrayList<Float> values3 = new ArrayList<Float>();
+
+        for(int i=0;i<values_data.size()-2;i++){
+            values1.add(Float.parseFloat(values_data.get(i)));
+            values2.add(Float.parseFloat(values_data.get(i+1)));
+            values3.add(Float.parseFloat(values_data.get(i+2)));
+        }
 
         for (int i = 0; i < dimensions_data.size(); i++) {
             if (!uniqueDim.contains(dimensions_data.get(i))) {
@@ -45,19 +53,27 @@ public class BubbleFragment extends Fragment {
             }
         }
 
-        Coloradapter adapter = new Coloradapter(getActivity(), uniqueDim);
+        BubbleValue value_zero = new BubbleValue(values1.get(0).floatValue(),values2.get(0).floatValue(),values3.get(0).floatValue());
+        values.add(value_zero);
 
-
-        for (int i = 0; i < numBubbles; ++i) {
-            BubbleValue value = new BubbleValue(i, (float) Math.random() * 100, (float) Math.random() * 1000);
-            value.setColor(ChartUtils.pickColor());
+        for (int i = 1; i < values1.size(); ++i) {
+            int j;
+            int c=0;
+            BubbleValue value = new BubbleValue(values1.get(i).floatValue(),values2.get(i).floatValue(),values3.get(i).floatValue());
+            for(j=0;j<uniqueDim.size();j++){
+                if(dimensions_data.get((i+2)/3).equals(uniqueDim.get(j))){
+                value.setColor(ChartUtils.COLORS[j%5]);
+                    value.setLabel(dimensions_data.get(j));
+                }
+            }
             values.add(value);
         }
 
         BubbleChartData data = new BubbleChartData(values);
 
-        data.setAxisXBottom(new Axis().setName("Axis X"));
-        data.setAxisYLeft(new Axis().setName("Axis Y").setHasLines(true));
+        data.setAxisXBottom(new Axis().setName(values_items.get(0)));
+        data.setAxisYLeft(new Axis().setName(values_items.get(1)).setHasLines(true));
+        data.setHasLabelsOnlyForSelected(true);
         return data;
     }
 
@@ -71,7 +87,6 @@ public class BubbleFragment extends Fragment {
         bubbleChartView.setBubbleChartData(generateBubbleChartData());
         bubbleChartView.setZoomType(ZoomType.HORIZONTAL_AND_VERTICAL);
         bubbleChartView.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
-
         layout.addView(bubbleChartView);
 
         return rootView;

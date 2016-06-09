@@ -1,34 +1,21 @@
 package com.braida.moura.mobilebi;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import javax.xml.datatype.Duration;
 
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
-import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
 import lecho.lib.hellocharts.listener.PieChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.SelectedValue;
 import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.model.SubcolumnValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
 
@@ -39,6 +26,8 @@ public class PieFragment extends Fragment {
 
     public ArrayList<String> uniqueDim = new ArrayList<String>();
     public int labeltype = 0;
+
+
 
 
     private PieChartData generatePieChartData() throws JSONException {
@@ -69,11 +58,11 @@ public class PieFragment extends Fragment {
         List<SliceValue> sdimensions = new ArrayList<SliceValue>();
         int[] colors = new int[uniqueDim.size()];
         for (int i = 0; i < uniqueDim.size(); i++) {
-            colors[i] = ChartUtils.COLORS[i];
+            colors[i] = ChartUtils.COLORS[i%5];
         }
         for (int i = 0; i < uniqueDim.size(); ++i) {
             sdimensions.add(new SliceValue(values[i], colors[i]));
-            sdimensions.get(i).setLabel(uniqueDim.get(i).toString());
+            sdimensions.get(i).setLabel(uniqueDim.get(i));
         }
 
         PieChartData data = new PieChartData(sdimensions);
@@ -81,6 +70,8 @@ public class PieFragment extends Fragment {
         data.setHasLabelsOutside(true);
         return data;
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -122,4 +113,6 @@ public class PieFragment extends Fragment {
             }
         }
     }
+
+
 }

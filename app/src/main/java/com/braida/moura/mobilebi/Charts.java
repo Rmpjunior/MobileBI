@@ -1,28 +1,32 @@
 package com.braida.moura.mobilebi;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
-import android.view.View;
+import android.view.MenuItem;
+import android.view.ViewConfiguration;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+
 
 
 public class Charts extends FragmentActivity implements ActionBar.TabListener {
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-     String[] tabs = {"Bar", "Color Bar", "Bubble"};
+    private Toolbar toolbar;
+    String stringSpeak;
+    int atual;
+    ArrayList<String> tabs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +37,26 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(mAdapter);
         viewPager.setOffscreenPageLimit(2);
-        actionBar.setHomeButtonEnabled(false);
+       actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
+                | ActionBar.DISPLAY_SHOW_HOME);
         Bundle bundle = new Bundle();
         bundle = getIntent().getExtras();
+        tabs=bundle.getStringArrayList("tabs");
         Intent intent = new Intent(this, TabsPagerAdapter.class);
         intent.putExtras(bundle);
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            // Ignore
+        }
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -58,8 +74,13 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-        viewPager.setCurrentItem(1);
+        /*Intent recintent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "AndroidBite Voice Recognition...");
+        startActivityForResult(recintent, 100);*/
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,18 +91,26 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.voice_command:
+                Intent recintent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                recintent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                recintent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak");
+                startActivityForResult(recintent, 100);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -95,6 +124,45 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
 
     @Override
     public void onTabReselected(Tab tab, FragmentTransaction ft) {
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 100: {
+                if (resultCode == RESULT_OK && null != data) {
+                    atual=viewPager.getCurrentItem();
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    stringSpeak=result.get(0);
+                    if(stringSpeak.toLowerCase().contains("next")){
+                        if(atual==(tabs.size()-1)){
+                            viewPager.setCurrentItem(0);
+                        }
+                        else{
+                            viewPager.setCurrentItem(atual+1);
+                        }}
+                    else
+                    if(stringSpeak.toLowerCase().contains("back")){
+                        if(atual==0){
+                            viewPager.setCurrentItem(tabs.size()-1);
+                        }
+                        else{
+                            viewPager.setCurrentItem(atual-1);
+                        }}
+                    else{
+                        Toast.makeText(getApplicationContext(),"Invalid Command",Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+
+
+            }
+
+
+        }
+
 
     }
 }
