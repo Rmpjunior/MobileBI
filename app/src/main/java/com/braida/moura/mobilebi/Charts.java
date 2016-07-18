@@ -42,7 +42,7 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
                 | ActionBar.DISPLAY_SHOW_HOME);
-        Bundle bundle = new Bundle();
+        Bundle bundle;
         bundle = getIntent().getExtras();
         tabs=bundle.getStringArrayList("tabs");
         Intent intent = new Intent(this, TabsPagerAdapter.class);
@@ -57,6 +57,7 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
         } catch (Exception ex) {
             // Ignore
         }
+
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -92,9 +93,6 @@ public class Charts extends FragmentActivity implements ActionBar.TabListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
-                return true;
 
             case R.id.voice_command:
                 Intent recintent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);

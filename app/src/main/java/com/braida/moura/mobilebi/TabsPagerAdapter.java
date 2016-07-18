@@ -2,10 +2,7 @@ package com.braida.moura.mobilebi;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
@@ -30,8 +27,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
                     switch (tabs.get(0)) {
                         case "Bar":
                             return new BarFragment();
-                        case "Color Bar":
-                            return new ColorBarFragment();
                         case "Pie":
                             return new PieFragment();
                         case "Bubble":
@@ -46,8 +41,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
                     switch (tabs.get(1)) {
                         case "Bar":
                             return new BarFragment();
-                        case "Color Bar":
-                            return new ColorBarFragment();
                         case "Pie":
                             return new PieFragment();
                         case "Bubble":
@@ -62,8 +55,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
                     switch (tabs.get(2)) {
                         case "Bar":
                             return new BarFragment();
-                        case "Color Bar":
-                            return new ColorBarFragment();
                         case "Pie":
                             return new PieFragment();
                         case "Bubble":
@@ -78,8 +69,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
                     switch (tabs.get(3)) {
                         case "Bar":
                             return new BarFragment();
-                        case "Color Bar":
-                            return new ColorBarFragment();
                         case "Pie":
                             return new PieFragment();
                         case "Bubble":
@@ -94,8 +83,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter{
                     switch (tabs.get(4)) {
                         case "Bar":
                             return new BarFragment();
-                        case "Color Bar":
-                            return new ColorBarFragment();
                         case "Pie":
                             return new PieFragment();
                         case "Bubble":

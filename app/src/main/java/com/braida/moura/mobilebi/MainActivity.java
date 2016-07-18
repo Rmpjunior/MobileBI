@@ -1,8 +1,12 @@
 package com.braida.moura.mobilebi;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     AutoCompleteTextView textCube;
     Button btnCharts;
     Button btnGo;
+    Button btnVoice;
     ListView dimensions;
     ArrayList <String> checkedValue;
     ListView values;
@@ -37,8 +43,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     ArrayList<String> values_data = new ArrayList<String>();
     Listadapter Adapter = new Listadapter(this, dimensions_items);
     Listadapter Adapter2 = new Listadapter(this,values_items);
-    String meta;
-    String data;
+    String stringSpeak;
+    ArrayList<String> tabs = new ArrayList<String>();
 
 
 
@@ -97,6 +103,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         textCube = (AutoCompleteTextView) findViewById(R.id.textCube); //define a caixa de texto que seleciona o cubo
         btnCharts = (Button)findViewById(R.id.charts); //define o bot�o que abre a janela de gr�ficos
+        btnCharts.setVisibility(View.GONE);
         btnGo = (Button) findViewById(R.id.go);
         String[] Cubos = getResources().getStringArray(R.array.cubos); //define a array de strings com os cubos existentes na resource de strings
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cubos); //cria o adaptador para o autocomplete
@@ -114,6 +121,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 values_items_checked.clear();
                 dimensions.setAdapter(null);
                 values.setAdapter(null);
+                btnCharts.setVisibility(View.VISIBLE);
                 InputMethodManager imm = (InputMethodManager)getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(textCube.getWindowToken(), 0);
                 for (int i = 0; i < nrObj(textCube.getText()+"_meta.json"); i++) {
@@ -137,6 +145,24 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 values_items_checked.clear();
                 dimensions_data.clear();
                 values_data.clear();
+                new Loading().execute();
+            }
+        });
+    }
+
+    private class Loading extends AsyncTask<String, Void, Boolean> {
+
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(final String... args) {
+            try {
                 for (int i = 0; i < dimensions_items.size(); i++) {
                     if (Adapter.itemChecked[i]) {
                         dimensions_items_checked.add(dimensions_items.get(i));
@@ -158,30 +184,78 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                         values_data.add(loadJSON(i, values_items_checked.get(j), textCube.getText() + "_data.json"));
                     }
                 }
-                ArrayList<String> tabs = new ArrayList<String>();
-                Intent myIntent = new Intent(MainActivity.this, Charts.class);
-                if(dimensions_items_checked.size()==1 && values_items_checked.size()==1){
-                tabs.add("Pie");
-                }
-                if(dimensions_items_checked.size()==1  && values_items_checked.size()==1){
-                tabs.add("Bar");
-                }
-                if(dimensions_items_checked.size()==2  && values_items_checked.size()==1){
-                    tabs.add("Color Bar");
-                }
-                if(dimensions_items_checked.size()==1 && values_items_checked.size()==3){
-                    tabs.add("Bubble");
-                }
-                tabs.add("Table");
-                myIntent.putExtra("tabs", tabs);
-                myIntent.putExtra("dimensions_items", dimensions_items_checked);
-                myIntent.putExtra("dimensions_data", dimensions_data);
-                myIntent.putExtra("values_items", values_items_checked);
-                myIntent.putExtra("values_data", values_data);
-                MainActivity.this.startActivity(myIntent);
+
+                return true;
+            } catch (Exception e) {
+                Log.e("tag", "error", e);
+                return false;
             }
-        });
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+
+            Intent myIntent = new Intent(MainActivity.this, Charts.class);
+            if(dimensions_items_checked.size()==1 && values_items_checked.size()==1){
+                tabs.add("Pie");
+            }
+            if(dimensions_items_checked.size()==1  && values_items_checked.size()==1){
+                tabs.add("Bar");
+            }
+            if(dimensions_items_checked.size()==2  && values_items_checked.size()==1){
+                tabs.add("Color Bar");
+            }
+            if(dimensions_items_checked.size()==1 && values_items_checked.size()==3){
+                tabs.add("Bubble");
+            }
+            tabs.add("Table");
+            myIntent.putExtra("tabs", tabs);
+            myIntent.putExtra("dimensions_items", dimensions_items_checked);
+            myIntent.putExtra("dimensions_data", dimensions_data);
+            myIntent.putExtra("values_items", values_items_checked);
+            myIntent.putExtra("values_data", values_data);
+            MainActivity.this.startActivity(myIntent);
+
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+
+
+        }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 100: {
+                if (resultCode == RESULT_OK && null != data) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    stringSpeak = result.get(0);
+                    int a=0;
+                    for (int i = 0; i < dimensions_items.size(); i++) {
+                        if (stringSpeak.toLowerCase().contains(dimensions_items.get(i))) {
+                            Toast.makeText(getApplicationContext(), "Encontrado: " + dimensions_items.get(i), Toast.LENGTH_LONG).show();
+                            a = 1;
+                        }
+                    }
+                        if(a==0) {
+                            Toast.makeText(getApplicationContext(), "Invalid Command", Toast.LENGTH_LONG).show();
+                        }
+
+                    break;
+
+
+                }
+
+
+            }
+
+
+        }
+    }
+
 
 
     @Override
@@ -210,10 +284,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

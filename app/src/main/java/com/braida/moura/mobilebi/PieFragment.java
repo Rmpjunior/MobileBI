@@ -1,22 +1,24 @@
 package com.braida.moura.mobilebi;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.listener.PieChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
 
 /**
@@ -26,6 +28,7 @@ public class PieFragment extends Fragment {
 
     public ArrayList<String> uniqueDim = new ArrayList<String>();
     public int labeltype = 0;
+    Button button;
 
 
 
@@ -56,9 +59,12 @@ public class PieFragment extends Fragment {
             values[i] = avalues.get(i);
         }
         List<SliceValue> sdimensions = new ArrayList<SliceValue>();
-        int[] colors = new int[uniqueDim.size()];
-        for (int i = 0; i < uniqueDim.size(); i++) {
-            colors[i] = ChartUtils.COLORS[i%5];
+        int [] colors = new int[uniqueDim.size()];
+        Random rand= new Random();
+
+        for(int i=0;i<colors.length;i++)
+        {
+            colors[i]= Color.rgb(55 + rand.nextInt(200), 55 + rand.nextInt(200), 55 + rand.nextInt(200));
         }
         for (int i = 0; i < uniqueDim.size(); ++i) {
             sdimensions.add(new SliceValue(values[i], colors[i]));
@@ -85,7 +91,6 @@ public class PieFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         /** Note: Chart is within ViewPager so enable container scroll mode. **/
         pieChartView.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
         pieChartView.setCircleFillRatio(0.7f);
@@ -94,6 +99,10 @@ public class PieFragment extends Fragment {
 
         return rootView;
     }
+
+
+
+
 
     private class ValueTouchListener implements PieChartOnValueSelectListener {
 

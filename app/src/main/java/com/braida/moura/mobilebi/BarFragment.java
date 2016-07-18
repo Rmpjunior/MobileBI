@@ -1,6 +1,5 @@
 package com.braida.moura.mobilebi;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,11 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.gesture.ZoomType;
@@ -21,7 +18,6 @@ import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Column;
 import lecho.lib.hellocharts.model.ColumnChartData;
-import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.SubcolumnValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
@@ -67,9 +63,17 @@ public class BarFragment extends Fragment {
 
         ArrayList<AxisValue> axisvalues = new ArrayList<AxisValue>();
 
+        int [] colors = new int[uniqueDim.size()];
+        Random rand= new Random();
+
+        for(int i=0;i<colors.length;i++)
+        {
+            colors[i]= Color.rgb(55 + rand.nextInt(200), 55 + rand.nextInt(200), 55 + rand.nextInt(200));
+        }
+
         for (int i = 0; i < uniqueDim.size(); ++i) {
-            subcolumn.add(new SubcolumnValue(values[i], ChartUtils.COLOR_BLUE));
-            subcolumn.get(i).setLabel(uniqueDim.get(i).toString());
+            subcolumn.add(new SubcolumnValue(values[i], colors[i]));
+            subcolumn.get(i).setLabel(uniqueDim.get(i));
         }
 
 
@@ -84,6 +88,7 @@ public class BarFragment extends Fragment {
         axisX.setName(dimensions_items.get(0));
         axisy.setValues(null);
         axisy.setName(values_items.get(0));
+        axisy.setHasLines(true);
         axisX.setValues(null);
         data.setAxisXBottom(axisX);
         data.setAxisYLeft(axisy);
